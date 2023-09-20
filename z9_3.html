@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+
+      #field {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        background-color: green;
+      }
+
+      #center-circle {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background-color: white;
+      }
+
+      #goal-1 {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        width: 10px;
+        height: 20%;
+        background-color: white;
+      }
+
+      #goal-2 {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        width: 10px;
+        height: 20%;
+        background-color: white;
+      }
+
+      #ball {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background-color: rgb(107, 91, 91);
+        border-radius: 50%;
+        transition: all 0.5s ease-in;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="field">
+      <div id="center-circle"></div>
+      <div id="goal-1"></div>
+      <div id="goal-2"></div>
+      <div id="ball"></div>
+    </div>
+
+    <script>
+      var field = document.getElementById("field");
+      var ball = document.getElementById("ball");
+
+      field.addEventListener("click", function(event) {
+        var ballWidth = ball.offsetWidth;
+        var ballHeight = ball.offsetHeight;
+        var fieldWidth = field.offsetWidth;
+        var fieldHeight = field.offsetHeight;
+        var clickX = event.clientX;
+        var clickY = event.clientY;
+        var newX = clickX - ballWidth / 2;
+        var newY = clickY - ballHeight / 2;
+
+        if (newX < 0) {
+          newX = 0;
+        } else if (newX + ballWidth > fieldWidth) {
+          newX = fieldWidth - ballWidth;
+        }
+
+        if (newY < 0) {
+          newY = 0;
+        } else if (newY + ballHeight > fieldHeight) {
+          newY = fieldHeight - ballHeight;
+        }
+
+        ball.style.top = newY + "px";
+        ball.style.left = newX + "px";
+      });
+    </script>
+  </body>
+</html>

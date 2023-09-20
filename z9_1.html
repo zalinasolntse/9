@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Мой браузер</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #top {
+            height: 100px;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+
+        #bottom {
+            height: calc(100% - 100px);
+            overflow: hidden;
+        }
+
+        #frame {
+            width: 800px;
+            height: 600px;
+            border: none;
+        }
+    </style>
+    <script>
+        function loadPage() {
+            var address = document.getElementById("address").value;
+            var frame = document.getElementById("frame");
+            frame.src = address;
+        }
+
+        function openInNewWindow() {
+            var address = document.getElementById("address").value;
+            window.open(address);
+        }
+
+        function goBack() {
+            var frame = document.getElementById("frame");
+            frame.contentWindow.history.back();
+        }
+
+        function goForward() {
+            var frame = document.getElementById("frame");
+            frame.contentWindow.history.forward();
+        }
+
+        function reloadPage() {
+            var frame = document.getElementById("frame");
+            frame.contentWindow.location.reload();
+        }
+    </script>
+</head>
+<body>
+    <div id="top">
+        <label for="address">Адрес:</label>
+        <input type="text" id="address" value="https://avatars.mds.yandex.net/i?id=cb5b031df9a0b0b8b31db0577c6fda81_l-5273666-images-thumbs&n=13">
+        <button onclick="loadPage()">Открыть</button>
+        <button onclick="openInNewWindow()">Открыть в новом окне</button>
+        <button onclick="goBack()">Назад</button>
+        <button onclick="goForward()">Вперед</button>
+        <button onclick="reloadPage()">Перезагрузить</button>
+    </div>
+    <div id="bottom">
+        <iframe id="frame" src="https://avatars.mds.yandex.net/i?id=d11c16911bc5989cbeb62a114b9fb949_l-7762130-images-thumbs&n=13"></iframe>
+    </div>
+</body>
+</html>

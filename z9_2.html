@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 10px 20px;
+        background-color: #f15187;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="button">Кнопка</button>
+
+    <script>
+      var button = document.getElementById("button");
+
+      button.addEventListener("mouseenter", function() {
+        button.style.display = "none";
+        setTimeout(function() {
+          var windowHeight = window.innerHeight;
+          var windowWidth = window.innerWidth;
+          var randomTop = Math.floor(Math.random() * windowHeight);
+          var randomLeft = Math.floor(Math.random() * windowWidth);
+          button.style.top = randomTop + "px";
+          button.style.left = randomLeft + "px";
+          button.style.display = "block";
+        }, 3000);
+      });
+    </script>
+  </body>
+</html>
